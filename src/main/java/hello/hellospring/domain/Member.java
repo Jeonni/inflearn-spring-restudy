@@ -1,15 +1,15 @@
 package hello.hellospring.domain;
 
 public class Member {
-    private Long ig;
+    private Long id;
     private String name;
 
     public Long getId() {
-        return ig;
+        return id;
     }
 
     public void setId(Long id) {
-        this.ig = ig;
+        this.id = id;
     }
 
     public String getName() {
