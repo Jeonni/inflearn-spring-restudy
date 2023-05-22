@@ -9,7 +9,12 @@ import java.util.Optional;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    // 직접 생성하는 것이 아닌 외부에서 넣어주도록 바꿈
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     // 회원 가입
     public Long join(Member member) {
@@ -17,14 +22,8 @@ public class MemberService {
         // Optional 바로 반환하는 것은 좋지 않음
 
         // 컨트롤 + 시프트 + m
-        validateDuplicateMember(member);
-
-//        Optional<Member> result = memberRepository.findByName(member.getName());
-//        result.ifPresent(m->{
-//            throw  new IllegalStateException("이미 존재하는 회원입니다.");
-//        });
-//        memberRepository.save(member);
-
+        validateDuplicateMember(member); // 중복 회원 검증
+        memberRepository.save(member);
         return member.getId();
     }
 
