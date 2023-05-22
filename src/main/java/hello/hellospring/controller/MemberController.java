@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller // 외부 요청을 받음
 public class MemberController {
-    private MemberService memberService;
+    private final MemberService memberService;
 
     @Autowired
     public MemberController(MemberService memberService) {
